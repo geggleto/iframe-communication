@@ -1,0 +1,35 @@
+<html>
+<head>
+    <script type="application/javascript">
+        (function(window) {
+            function addEvent(el, evt, fn) {
+                if (el.addEventListener) {
+                    el.addEventListener(evt, fn);
+                } else if (el.attachEvent) {
+                    el.attachEvent('on' + evt, function (evt) {
+                        fn.call(el, evt);
+                    });
+                } else if (typeof el['on' + evt] === 'undefined' || el['on' + evt] === null) {
+                    el['on' + evt] = function (evt) {
+                        fn.call(el, evt);
+                    };
+                }
+            }
+
+            addEvent(window, 'message', function (message) {
+
+                var dataLayer = window.dataLayer = window.dataLayer || [];
+
+                if (message.data === 'formSubmit') {
+                    //GA Tracking Here
+                    console.log("received event from iframe");
+                }
+
+            });
+        })(window);
+    </script>
+</head>
+<body>
+    <iframe src="iframe.html"></iframe>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<script type="application/javascript">
+    (function () {
+        try {
+            parent.postMessage('formSubmit', 'http://localhost:63342');
+        } catch(e) {
+            // Something went wrong...
+            window.console && window.console.log(e);
+        }
+    })();
+</script>
